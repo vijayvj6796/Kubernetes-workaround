@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: db1
+  name: db1
+spec:
+  containers:
+  - image: l00171152/openmrsdb:v1
+    name: openmrs
+    ports:
+      - containerPort: 8080
+    envFrom:
+      - secretRef:
+          name: vijay
