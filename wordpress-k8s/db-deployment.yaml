@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  labels:
+    app: db
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: db
+  template:
+    metadata:
+      labels:
+        run: db
+      name: mariadb
+    spec:
+      containers:
+      - image: l00171152/wordpress:v1
+        name: db
+        ports:
+          - containerPort: 3306
+        envFrom:
+          - secretRef:
+              name: please

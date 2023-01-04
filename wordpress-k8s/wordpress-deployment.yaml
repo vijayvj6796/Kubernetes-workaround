@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: frontend
+  template:
+    metadata:
+      labels:
+        run: frontend
+      name: wordpress
+    spec:
+      containers:
+      - image: l00171152/wordpress
+        name: db
+        ports:
+          - containerPort: 80
+        envFrom:
+          - secretRef:
+              name: please
